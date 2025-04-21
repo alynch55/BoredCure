@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Love Tester</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">BoredCure</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="myresume.html">My Resume</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="todos.html">To Do's</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="lovetester.html">Love Tester</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/redcollage.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Love Tester</h1>
+                            <span class="subheading">Find Out Now if You're Compatable!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                background-image:url('assets/img/pinksky.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                /* background-color: #eba9c2; */
+            }
+            .top-container {
+                display: flex;
+                flex-direction: center;
+                justify-content: center;
+                align-items: center;
+                padding: 20x;
+                width: 100%;
+                border-color: #9e006e;
+            
+            }
+            .input-group {
+                display: flex;
+                align-items: center;
+                margin: 0 20px;
+            }
+            .input-group label {
+                margin-right: 10px;
+                color: #9e006e;
+                text-decoration:solid;
+                font-weight: 600;
+                font-size: larger;
+                
+            }
+            .center-image {
+                position: relative;
+                display: inline-block;
+            }
+            .image-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 2em;
+                color: white;
+                /* background-color: rgba(0, 0, 0, 0.5); */
+                padding: 10px;
+                cursor: pointer;
+            }
+            #random-percent {
+                font-size: 3em;
+            }
+            #message-box {
+                margin-top: 20px;
+                font-size: 1.2em;
+                color:#9e006e;
+                font-weight: 300;
+            }
+              /* Heart Image Pulsing Animation */
+        .heart-pulse {
+            animation: pulse 1.5s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }}
+
+        </style>
+    </head>
+    <body>
+        <div class="top-container">
+            <div class="input-group">
+                <label for="firstPerson">First Person:</label>
+                <input type="text" id="firstPerson" name="firstPerson">
+            </div>
+            <div class="input-group">
+                <label for="secondPerson">Second Person:</label>
+                <input type="text" id="secondPerson" name="secondPerson">
+            </div>
+        </div>
+    
+        <div class="center-image">
+            <p>&nbsp;</p>
+            <img src="assets/img/pleasework.png" alt="Center Image" width="500" class="heart-pulse">
+            <div class="image-text" onclick="generatePercent()" id="imageText">
+                <span id="random-percent">TEST</span>
+            </div>
+            <div id="message-box"></div>
+        </div>
+
+        <script>
+            function generatePercent() {
+                let percent = Math.floor(Math.random() * 100) + 1;
+                let currentPercent = 0;
+                let interval = setInterval(function() {
+                    currentPercent++;
+                    document.getElementById('random-percent').innerText = currentPercent + '%';
+                    if (currentPercent >= percent) {
+                        clearInterval(interval);
+                        showMessage(percent);
+                    }
+                }, 50); // Adjust the interval to control the speed of counting
+            }
+        
+            function showMessage(percent) {
+                let message = getMessage(percent);
+                document.getElementById('message-box').innerText = message;
+            }
+            </script>
+    
+            <script>
+            function getMessage(percent) {
+                if (percent >= 0 && percent <= 10) {
+                    return "Someone needs to get a restraining order... stay away from them please";
+                } else if (percent > 10 && percent <= 20) {
+                    return "Just confirmed you are delusional. They hate you love, move on.";
+                } else if (percent > 20 && percent <= 30) {
+                    return "Okayyy! They don't hate you! But they definitely don't like you. At all.";
+                } else if (percent > 30 && percent <= 40) {
+                    return "If they were on this site, they would've never even thought to put your name.";
+                } else if (percent > 40 && percent <= 50) {
+                    return "You are WAY over reading that smile they gave you.";
+                } else if (percent > 50 && percent <= 60) {
+                    return "Either you deserve better or you got to LOWER your standards.";
+                } else if (percent > 60 && percent <= 70) {
+                    return "If it does work, it is only because one of you are settling.";
+                } else if (percent > 70 && percent <= 80) {
+                    return "You'll be that couple no one gets at first but everyone ends up loving! (ft Tim and Kylie)";
+                } else if (percent > 80 && percent <= 90) {
+                    return "YOU'RE THE TOM AND ZENDAYA, THE KATNIS AND PEETA, THE HARRY AND OBAMA";
+                } else {
+                    return "DON'T LET THEM GO THEY ARE YOUR SOULMATE!!";
+                }
+            }
+        </script>
+        <!-- Footer-->
+        <footer class="border-top">
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; BoredCure 2025</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
